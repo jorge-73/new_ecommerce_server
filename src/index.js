@@ -13,7 +13,6 @@ const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-console.log(__dirname);
 // Configurar el middleware para servir archivos estáticos desde la carpeta "public"
 app.use(express.static(`${__dirname}/public`));
 app.use(

@@ -67,6 +67,7 @@ class ProductsCotroller {
   }
   async updateProduct(req, res) {
     try {
+      console.log(req.body);
       const pid = req.params.pid;
       const updated = req.body;
       const productFind = await ProductService.findById(pid);
