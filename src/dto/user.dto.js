@@ -7,5 +7,6 @@ export default class UserDTO {
     this.documents = user.documents;
     this.status = user.status;
     this.profilePicture = user.profile_Picture;
+    this.cart = user.cart;
   }
 }
