@@ -7,7 +7,7 @@ class ProductsRouter extends AppRouter {
     this.get("/", ["user", "admin", "premium"], productsController.getProducts);
     this.get("/:pid", ["user", "admin", "premium"], productsController.getProductById);
     this.post("/", ["admin", "premium"], uploaders, productsController.createProduct);
-    this.put("/:pid", ["admin", "premium"], productsController.updateProduct);
+    this.put("/:pid", ["admin", "premium"],uploaders, productsController.updateProduct);
     this.delete("/:pid", ["admin", "premium"], productsController.deleteProduct);
   }
 }

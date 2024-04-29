@@ -44,7 +44,7 @@ class ProductsCotroller {
         title,
         description,
         price: parseFloat(price),
-        thumbnails: req.files ? [req?.files[0]?.originalname] : [],
+        thumbnails: req?.files[0]?.originalname ? [req?.files[0]?.originalname] : [],
         code,
         category,
         stock: parseInt(stock),
@@ -67,7 +67,6 @@ class ProductsCotroller {
   }
   async updateProduct(req, res) {
     try {
-      console.log(req.body);
       const pid = req.params.pid;
       const updated = req.body;
       const productFind = await ProductService.findById(pid);
@@ -85,7 +84,13 @@ class ProductsCotroller {
 
       if (updated._id === pid) return res.sendUserError("Cannot modify product id");
 
-      await ProductService.update(pid, updated);
+      // Verificamos si hay imagen agregada para modificar sino dejamos el array vacio
+      const updatedProduct = {
+        ... updated,
+        thumbnails: req?.files[0]?.originalname ? [req?.files[0]?.originalname] : [], 
+      }
+
+      await ProductService.update(pid, updatedProduct);
 
       const products = await ProductService.find();
       // req.app.get("socketio").emit("updatedProducts", products);
