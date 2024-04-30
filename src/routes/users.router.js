@@ -4,6 +4,7 @@ import AppRouter from "./router.js";
 
 class UsersRouter extends AppRouter {
   init() {
+    this.get("/", ["admin"], usersController.getAllUsers);
     this.post("/premium/:uid", ["admin"], usersController.updatedUserRole);
     this.post("/:uid/documents", ["user", "premium", "admin"], uploaders, usersController.addFiles);
     this.delete("/inactiveUsers", ["admin"], usersController.deleteInactiveUsers);

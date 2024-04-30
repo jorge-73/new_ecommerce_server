@@ -4,6 +4,17 @@ import UserDTO from "../dto/user.dto.js";
 import logger from "../utils/logger.js";
 
 class UsersController {
+  async getAllUsers(req, res) {
+    try {
+      // Obtener todos los usuarios excepto los que tienen el rol "admin"
+      const users = await UserService.findUserNoAdmin();
+      if (!users) return res.sendRequestError("Users not found");
+      res.sendSuccess(users);
+    } catch (error) {
+      logger.error(error);
+      res.sendServerError(error.message);
+    }
+  }
   async updatedUserRole(req, res) {
     try {
       const uid = req.params.uid;

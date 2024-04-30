@@ -3,6 +3,7 @@ export default class UserRepository {
     this.dao = dao;
   }
   find = async () => await this.dao.find();
+  findUserNoAdmin = async () => await this.dao.findUserNoAdmin();
   findOne = async (user) => await this.dao.findOne(user);
   findById = async (id) => await this.dao.findById(id);
   create = async (user) => await this.dao.create(user);
