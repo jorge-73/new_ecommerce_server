@@ -21,7 +21,7 @@ export const generateToken = (user, hs) => {
 };
 
 export const generateUniqueCode = () => {
-  codeid = nanoid();
+  const codeid = nanoid();
   return codeid;
 };
 

@@ -3,9 +3,10 @@ import paymentsController from "../controllers/payments.controller.js";
 
 class PaymentsRouter extends AppRouter {
   init() {
-    this.get("/createCheckout", ["user", "premium"], paymentsController.createPayments);
+    this.post("/createCheckout/:cid", ["user", "premium"], paymentsController.createCheckout);
     this.get("/success", ["user", "premium"], paymentsController.paymentSuccess);
     this.get("/cancel", ["user", "premium"], paymentsController.paymentCancel);
+    this.get("/getTicket/:tid", ["user", "premium"], paymentsController.getTicket);
   }
 }
 

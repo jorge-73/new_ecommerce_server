@@ -29,7 +29,7 @@ const calculateTotalAmount = async (cart) => {
 export const purchaseService = async (req, res) => {
   const userEmail = req?.user?.user?.email;
   const cid = req.params.cid;
-  const cart = await CartService.findById(cid);
+  const cart = await CartService.getCart(cid);
   if (!cart) {
     return res.sendRequestError(`The cart with id ${cid} does not exist`);
   }
@@ -74,7 +74,6 @@ export const purchaseService = async (req, res) => {
         quantity: prod.quantity,
       })),
     };
-
     const saveTicket = await CartService.createPurchase(newTicket);
 
     // Filtra los productos que se pudieron comprar del carrito
